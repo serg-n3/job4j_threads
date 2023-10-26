@@ -12,13 +12,11 @@ public class AccountStorage {
     private final HashMap<Integer, Account> accounts = new HashMap<>();
 
     public synchronized boolean add(Account account) {
-        var value = accounts.put(account.id(), account);
-        return value == null;
+        return accounts.put(account.id(), account) == null;
     }
 
     public synchronized boolean update(Account account) {
-        var value = accounts.computeIfPresent(account.id(), (k, v) -> account);
-        return value == null;
+        return accounts.computeIfPresent(account.id(), (k, v) -> account) != null;
     }
 
     public synchronized void delete(int id) {
