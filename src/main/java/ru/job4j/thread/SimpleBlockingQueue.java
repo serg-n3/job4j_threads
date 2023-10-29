@@ -19,7 +19,7 @@ public class SimpleBlockingQueue<T> {
 
     public void offer(T value) throws InterruptedException {
         synchronized (this) {
-            while (queue.size() >= size) {
+            while (queue.size() == size) {
                 this.wait();
             }
             queue.offer(value);
@@ -29,7 +29,7 @@ public class SimpleBlockingQueue<T> {
 
     public T poll() throws InterruptedException {
         synchronized (this) {
-            while (!queue.isEmpty()) {
+            while (queue.isEmpty()) {
                 this.wait();
             }
             this.notifyAll();
@@ -38,7 +38,7 @@ public class SimpleBlockingQueue<T> {
     }
 
     public synchronized int getSize() {
-        return size;
+        return queue.size();
     }
 
 }

@@ -10,7 +10,7 @@ class SimpleBlockingQueueTest {
 
     @Test
     void whenTestTrue() throws InterruptedException {
-        var sbq = new SimpleBlockingQueue<>(5);
+        var sbq = new SimpleBlockingQueue<>(10);
         Thread producer = new Thread(() -> IntStream.range(0, 10).forEach(value -> {
             try {
                 sbq.offer(value);
