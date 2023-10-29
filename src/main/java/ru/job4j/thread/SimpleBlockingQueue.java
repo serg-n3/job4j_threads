@@ -32,8 +32,9 @@ public class SimpleBlockingQueue<T> {
             while (queue.isEmpty()) {
                 this.wait();
             }
+            T rsl = queue.poll();
             this.notifyAll();
-            return queue.poll();
+            return rsl;
         }
     }
 
